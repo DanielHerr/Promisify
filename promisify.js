@@ -16,11 +16,11 @@ function promisify(...functionsobjects) {
   let item = self[path] || getsetproperty(path)
   if(typeof(item) == "function") {
    let oldfunction = item
+   if(oldfunction.callbacks == null) {
+    oldfunction.callbacks = 2
+   }
    let promise = function(...inputs) {
     return(new Promise(function(resolve, reject) {
-     if(oldfunction.callbacks == null) {
-      oldfunction.callbacks = 2
-     }
      if(oldfunction.callbacks > 0) {
       inputs.push(function() {
        if(arguments.length == 1) {
@@ -38,11 +38,12 @@ function promisify(...functionsobjects) {
      }
      newfunction()
    })) }
-   if(path.includes(".")) {
-    getsetproperty(path, promise)
-   } else {
-    self[path] = promise
-   }
+   if(oldfunction.callbacks > 0) {
+    if(path.includes(".")) {
+     getsetproperty(path, promise)
+    } else {
+     self[path] = promise
+   } }
   } else if(typeof(item) == "object") {
    for(let property of item) {
     promisify(path + "." + property.key)
