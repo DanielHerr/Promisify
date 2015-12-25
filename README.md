@@ -1,5 +1,5 @@
 # Promisify
-Converts callback functions to promises.
+Converts callback functions to promises. Requires <a href="https://github.com/DanielHerr/Object-Loops">Object Loops</a> if promisifying objects.
 
 Usage:
 ```javascript
