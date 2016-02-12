@@ -1,5 +1,5 @@
 # Promisify
-Converts callback functions to promises. Requires <a href="https://github.com/DanielHerr/Object-Loops">Object Loops</a> if promisifying objects.
+Converts callback functions to promises.
 
 Usage:
 ```javascript
@@ -10,6 +10,7 @@ function testfunction(number, success, failure) {
   failure(false)
 } }
 
+testpromise = promisify(testfunction)
 promisify("testfunction")
 
 testfunction(5).then(function(result) {
@@ -18,3 +19,5 @@ testfunction(5).then(function(result) {
  console.log(error)
 })
 ```
+
+Requires <a href="https://github.com/DanielHerr/Object-Loops">Object Loops</a> if promisifying objects.
