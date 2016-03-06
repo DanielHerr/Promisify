@@ -2,7 +2,7 @@
 Converts callback functions to promises.
 
 Usage:
-```javascript
+```
 function testfunction(number, success, failure) {
  if(number) {
   success(true)
@@ -20,4 +20,4 @@ testfunction(5).then(function(result) {
 })
 ```
 
-Requires <a href="https://github.com/DanielHerr/Object-Loops">Object Loops</a> if promisifying objects.
+Requires <a href="https://github.com/DanielHerr/Iterators">Object Loops</a> if promisifying objects.
