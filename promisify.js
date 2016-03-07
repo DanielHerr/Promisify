@@ -42,13 +42,13 @@ function promisify(...functionsobjects) {
       self[path] = promise
     } }
    } else if(typeof(item) == "object") {
-    for(let property of item) {
-     promisify(path + "." + property.key)
+    for(let { key } of item) {
+     promisify(path + "." + key)
    } }
   } else {
    if(typeof(item) == "object") {
-    for(let property of item) {
-     item[property.key] = promisify(property.value)
+    for(let { key, value } of item) {
+     item[key] = promisify(value)
     }
     return(item)
    } else if(typeof(item) == "function") {
