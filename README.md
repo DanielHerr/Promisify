@@ -1,5 +1,5 @@
 # Promisify
-Converts Chrome extension API callback functions to support promises.
+Converts Chrome extension API callback functions to support promises. Dependent only on Promise.
 
 Usage:
 ```
