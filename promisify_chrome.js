@@ -54,10 +54,14 @@ function promisify_chrome_function(object, name) {
 			object[name] = modified
 			return result
 		} catch(error) {
-   if(error.message.indexOf("No matching signature") != -1 && error.message.indexOf("function") == -1) {
-				// todo check legacy chrome versions error strings, Invocation of form, Invalid arguments to
+   if(error.message.indexOf("No matching signature") != -1 && error.message.indexOf("function") == -1
+			 || error.message.indexOf("Invocation of form") != -1
+				 && error.message.indexOf("function", error.message.indexOf("doesn't match definition")) == -1
+				// Error in invocation of namespace.method(function callback): No matching signature.
+				// Invocation of form namespace.method(function, object) doesn't match definition namespace.method(string id)
+			) {
     object[name] = original
-				return object[name]()
+				return original.apply(object, arguments)
 			} else {
     throw error
 			}
